@@ -1,2 +1,4 @@
 netflix-gpt.code-workspace
 node_modules/*
+.vite/
+.editorconfig
