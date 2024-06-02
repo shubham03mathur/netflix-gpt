@@ -1,9 +1,26 @@
 import { useState } from "react";
 import LoginHeader from "../Components/LoginHeader";
+import SnackbarAlert from "../Components/UI/SnackbarAlert";
 import { useFormik } from "formik";
 
+import { auth } from "../utility/firebase";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    updateProfile,
+} from "firebase/auth";
+
+import { useNavigate } from "react-router";
+
 const Login = () => {
+    const navigate = useNavigate();
     const [isSignIn, toggleSignIn] = useState(true);
+    const [message, setMessage] = useState({
+        severity: "",
+        text: "",
+    });
+    const [open, setOpen] = useState(false);
+
     const validateSignUp = (values) => {
         const errors = {};
 
@@ -71,7 +88,8 @@ const Login = () => {
         return errors;
     };
 
-    const getValidationProp = () => isSignIn ? validateSignIn : validateSignUp;
+    const getValidationProp = () =>
+        isSignIn ? validateSignIn : validateSignUp;
 
     const formik = useFormik({
         initialValues: {
@@ -81,11 +99,62 @@ const Login = () => {
             email: "",
         },
         validate: getValidationProp(),
-        onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
+        onSubmit: async (
+            { name, password, confirmPassword, email },
+            { resetForm }
+        ) => {
+            try {
+                if (!isSignIn) {
+                    //create account
+                    const userCredential = await createUserWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+                    const user = userCredential.user;
+                    await updateProfile(auth.currentUser, {
+                        displayName: name,
+                    });
+                    console.log(user);
+                    setOpen(true);
+                    setMessage({
+                        severity: "success",
+                        text: `Welcome! Your account has been created successfully.`,
+                    });
+                } else {
+                    const userCredential = await signInWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+                    const user = userCredential.user;
+                    console.log(user);
+                    setOpen(true);
+                    setMessage({
+                        severity: "success",
+                        text: `Welcome back ${user.displayName}! Logging you in...`,
+                    });
+                }
+                resetForm();
+                //navigate("/browse");
+            } catch (error) {
+                setOpen(true);
+                let errorMessage = error.message;
+                console.log(errorMessage);
+                if (error.code === 'auth/invalid-credential') {
+                    errorMessage = "Invalid credentials.";
+                }
+                if (error.code === 'auth/email-already-in-use') {
+                    errorMessage = "User already exists.";
+                }
+                setMessage({
+                    severity: "error",
+                    text: `Ah oh! We couldn't sign you in. ${errorMessage}`,
+                });
+            }
         },
     });
-   
+
     const handleSignIn = () => {
         toggleSignIn(!isSignIn);
         formik.setTouched({}, false);
@@ -110,7 +179,9 @@ const Login = () => {
                         />
                     )}
                     {formik.touched.name && formik.errors.name ? (
-                        <p className="text-red-600 text-[10px] ml-4">{formik.errors.name}</p>
+                        <p className="text-red-600 text-[10px] ml-4">
+                            {formik.errors.name}
+                        </p>
                     ) : null}
                     <input
                         type="email"
@@ -121,7 +192,9 @@ const Login = () => {
                         {...formik.getFieldProps("email")}
                     />
                     {formik.touched.email && formik.errors.email ? (
-                        <p className="text-red-600 text-[10px] ml-4">{formik.errors.email}</p>
+                        <p className="text-red-600 text-[10px] ml-4">
+                            {formik.errors.email}
+                        </p>
                     ) : null}
                     <input
                         type="password"
@@ -132,7 +205,9 @@ const Login = () => {
                         {...formik.getFieldProps("password")}
                     />
                     {formik.touched.password && formik.errors.password ? (
-                        <p className="text-red-600 text-[10px] ml-4">{formik.errors.password}</p>
+                        <p className="text-red-600 text-[10px] ml-4">
+                            {formik.errors.password}
+                        </p>
                     ) : null}
                     {!isSignIn && (
                         <input
@@ -146,7 +221,9 @@ const Login = () => {
                     )}
                     {formik.touched.confirmPassword &&
                     formik.errors.confirmPassword ? (
-                        <p className="text-red-600 text-[10px] ml-4">{formik.errors.confirmPassword}</p>
+                        <p className="text-red-600 text-[10px] ml-4">
+                            {formik.errors.confirmPassword}
+                        </p>
                     ) : null}
                     <button className="m-4 p-2 bg-red-500">
                         {isSignIn ? `Sign In` : `Sign Up`}
@@ -168,6 +245,13 @@ const Login = () => {
                     </div>
                 )}
             </div>
+            {message.text && (
+                <SnackbarAlert
+                    open={open}
+                    handleClose={() => setOpen(false)}
+                    message={message}
+                />
+            )}
         </div>
     );
 };
