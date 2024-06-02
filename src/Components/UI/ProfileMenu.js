@@ -17,7 +17,6 @@ export default function ProfileMenu({ name }) {
   const handleLogout = (event) => {
     event.preventDefault();
     signOut(auth).then(() => {
-        navigate("/");
       }).catch((error) => {
         // An error happened.
         console.log(error);
