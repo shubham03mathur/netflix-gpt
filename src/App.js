@@ -7,7 +7,7 @@ import Router from './Routes/Router';
 function App() {
     return (
         <Provider store={appStore}>
-            <RouterProvider router={ Router }>
+            <RouterProvider router={ Router } future={{ v7_startTransition: true }}>
                 <Layout />
             </RouterProvider>
         </Provider>

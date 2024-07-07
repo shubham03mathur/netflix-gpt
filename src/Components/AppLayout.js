@@ -1,23 +1,9 @@
-import { useEffect } from "react";
-import  { useNavigate, useOutletContext } from "react-router-dom";
 import Header from "./Header";
 
-const AppLayout = ({ children }) => {
-
-    const navigate = useNavigate();
-    const context = useOutletContext();
-
-    useEffect(() => {
-        if (!(context && context.user)) {
-            navigate("/");
-        } else {
-            navigate("/browse");
-        }
-    }, []);
-
+const AppLayout = ({ children }) => {   
     return (
         <>
-            <Header userData={context?.user}/>
+            <Header />
             <div>{children}</div>
         </>
     );
