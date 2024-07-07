@@ -11,7 +11,7 @@ import {
 } from "firebase/auth";
 
 import { useNavigate } from "react-router";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { addUser } from "../utility/userSlice";
 
 const Login = () => {
@@ -109,12 +109,8 @@ const Login = () => {
             try {
                 if (!isSignIn) {
                     //create account
-                    await createUserWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
-                    );
-                    
+                    await createUserWithEmailAndPassword(auth, email, password);
+
                     await updateProfile(auth.currentUser, {
                         displayName: name,
                     });
@@ -139,12 +135,15 @@ const Login = () => {
 
                 const { uid, email: userEmail, displayName } = auth.currentUser;
 
-                dispatch(addUser({
-                    uid,
-                    email: userEmail,
-                    displayName,
-                    userPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
-                }));
+                dispatch(
+                    addUser({
+                        uid,
+                        email: userEmail,
+                        displayName,
+                        userPhotoURL:
+                            "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png",
+                    })
+                );
                 resetForm();
                 navigate("/browse");
             } catch (error) {
@@ -172,100 +171,95 @@ const Login = () => {
 
     return (
         <div className="bg-cover-pic bg-cover bg-center h-screen">
-            <AppLayout>
-                <div className="box-border relative m-auto w-1/3 p-10 bg-black bg-opacity-80 text-white">
-                    <h1 className="text-white text-4xl font-bold">
-                        {isSignIn ? `Sign In` : `Sign Up`}
-                    </h1>
-                    <form
-                        className="flex flex-col"
-                        onSubmit={formik.handleSubmit}
-                    >
-                        {!isSignIn && (
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                placeholder="Full Name"
-                                className="m-4 p-3 bg-slate-500 bg-opacity-60"
-                                {...formik.getFieldProps("name")}
-                            />
-                        )}
-                        {formik.touched.name && formik.errors.name ? (
-                            <p className="text-red-600 text-[10px] ml-4">
-                                {formik.errors.name}
-                            </p>
-                        ) : null}
+            <div className="box-border relative m-auto w-1/3 p-10 bg-black bg-opacity-80 text-white">
+                <h1 className="text-white text-4xl font-bold">
+                    {isSignIn ? `Sign In` : `Sign Up`}
+                </h1>
+                <form className="flex flex-col" onSubmit={formik.handleSubmit}>
+                    {!isSignIn && (
                         <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Email Address"
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Full Name"
                             className="m-4 p-3 bg-slate-500 bg-opacity-60"
-                            {...formik.getFieldProps("email")}
+                            {...formik.getFieldProps("name")}
                         />
-                        {formik.touched.email && formik.errors.email ? (
-                            <p className="text-red-600 text-[10px] ml-4">
-                                {formik.errors.email}
-                            </p>
-                        ) : null}
+                    )}
+                    {formik.touched.name && formik.errors.name ? (
+                        <p className="text-red-600 text-[10px] ml-4">
+                            {formik.errors.name}
+                        </p>
+                    ) : null}
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Email Address"
+                        className="m-4 p-3 bg-slate-500 bg-opacity-60"
+                        {...formik.getFieldProps("email")}
+                    />
+                    {formik.touched.email && formik.errors.email ? (
+                        <p className="text-red-600 text-[10px] ml-4">
+                            {formik.errors.email}
+                        </p>
+                    ) : null}
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Password"
+                        className="m-4 p-3 bg-slate-500 bg-opacity-60"
+                        {...formik.getFieldProps("password")}
+                    />
+                    {formik.touched.password && formik.errors.password ? (
+                        <p className="text-red-600 text-[10px] ml-4">
+                            {formik.errors.password}
+                        </p>
+                    ) : null}
+                    {!isSignIn && (
                         <input
                             type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Confirm Password"
                             className="m-4 p-3 bg-slate-500 bg-opacity-60"
-                            {...formik.getFieldProps("password")}
+                            {...formik.getFieldProps("confirmPassword")}
                         />
-                        {formik.touched.password && formik.errors.password ? (
-                            <p className="text-red-600 text-[10px] ml-4">
-                                {formik.errors.password}
-                            </p>
-                        ) : null}
-                        {!isSignIn && (
-                            <input
-                                type="password"
-                                id="confirmPassword"
-                                name="confirmPassword"
-                                placeholder="Confirm Password"
-                                className="m-4 p-3 bg-slate-500 bg-opacity-60"
-                                {...formik.getFieldProps("confirmPassword")}
-                            />
-                        )}
-                        {formik.touched.confirmPassword &&
-                        formik.errors.confirmPassword ? (
-                            <p className="text-red-600 text-[10px] ml-4">
-                                {formik.errors.confirmPassword}
-                            </p>
-                        ) : null}
-                        <button className="m-4 p-2 bg-red-500">
-                            {isSignIn ? `Sign In` : `Sign Up`}
-                        </button>
-                    </form>
-                    {isSignIn ? (
-                        <div className="mt-8" onClick={handleSignIn}>
-                            New to Netflix ?{" "}
-                            <span className="ml-1 cursor-pointer">
-                                Sign up now.
-                            </span>
-                        </div>
-                    ) : (
-                        <div className="mt-8" onClick={handleSignIn}>
-                            Already a member ?{" "}
-                            <span className=" ml-1 cursor-pointer">
-                                Sign In here.
-                            </span>
-                        </div>
                     )}
-                </div>
-                {message.text && (
-                    <SnackbarAlert
-                        open={open}
-                        handleClose={() => setOpen(false)}
-                        message={message}
-                    />
+                    {formik.touched.confirmPassword &&
+                    formik.errors.confirmPassword ? (
+                        <p className="text-red-600 text-[10px] ml-4">
+                            {formik.errors.confirmPassword}
+                        </p>
+                    ) : null}
+                    <button className="m-4 p-2 bg-red-500">
+                        {isSignIn ? `Sign In` : `Sign Up`}
+                    </button>
+                </form>
+                {isSignIn ? (
+                    <div className="mt-8" onClick={handleSignIn}>
+                        New to Netflix ?{" "}
+                        <span className="ml-1 cursor-pointer">
+                            Sign up now.
+                        </span>
+                    </div>
+                ) : (
+                    <div className="mt-8" onClick={handleSignIn}>
+                        Already a member ?{" "}
+                        <span className=" ml-1 cursor-pointer">
+                            Sign In here.
+                        </span>
+                    </div>
                 )}
-            </AppLayout>
+            </div>
+            {message.text && (
+                <SnackbarAlert
+                    open={open}
+                    handleClose={() => setOpen(false)}
+                    message={message}
+                />
+            )}
         </div>
     );
 };

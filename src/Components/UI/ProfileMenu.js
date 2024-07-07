@@ -4,12 +4,14 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { auth } from '../../utility/firebase';
 import { signOut } from 'firebase/auth';
+import { removeUser } from '../../utility/userSlice';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-
 export default function ProfileMenu({ name }) {
-  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -17,6 +19,8 @@ export default function ProfileMenu({ name }) {
   const handleLogout = (event) => {
     event.preventDefault();
     signOut(auth).then(() => {
+        dispatch(removeUser());
+        navigate("/");
       }).catch((error) => {
         // An error happened.
         console.log(error);

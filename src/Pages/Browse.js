@@ -1,7 +1,5 @@
-import AppLayout from "../Components/AppLayout";
-
 const Browse = () => {
-    return <AppLayout>Browse</AppLayout>
-}
+    return <div>Browse</div>;
+};
 
 export default Browse;
