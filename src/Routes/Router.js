@@ -5,6 +5,13 @@ import Layout from "../Components/Layout";
 import BrowseMovies from "../service/browse-movies.js";
 import { BROWSE_MOVIE_ENDPOINT } from "../utility/constant";
 
+const fetchMovieList = async () => {
+    const response = await new BrowseMovies(
+        BROWSE_MOVIE_ENDPOINT
+    ).getAllNewMovieList();
+
+    return await response.json();
+};
 const Router = createBrowserRouter([
     {
         path: "/",
@@ -16,12 +23,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/browse",
-                loader: async () => {
-                    const data = new BrowseMovies(
-                        BROWSE_MOVIE_ENDPOINT
-                    ).getAllNewMovieList();
-                    return defer({ data });
-                },
+                loader: fetchMovieList,
                 element: <Browse />,
             },
         ],
