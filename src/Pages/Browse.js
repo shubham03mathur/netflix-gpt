@@ -19,10 +19,10 @@ const Browse = () => {
 
     if (!moviesList) return <div>Loading...</div>;
     return (
-        <div>
+        <>
             <MainContainer />
             <MovieTiles />
-        </div>
+        </>
     );
 };
 

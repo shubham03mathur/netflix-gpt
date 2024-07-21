@@ -8,3 +8,7 @@ export const API_OPTIONS = {
 };
 
 export const BROWSE_MOVIE_ENDPOINT = 'https://api.themoviedb.org/3/movie/now_playing';
+
+export const GET_VIDEOS_BY_MOVIE_ID = (id) => {
+    return `https://api.themoviedb.org/3/movie/${id}/videos`;
+}

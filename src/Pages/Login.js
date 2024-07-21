@@ -170,7 +170,7 @@ const Login = () => {
 
     return (
         <div className="bg-cover-pic bg-cover bg-center h-screen">
-            <div className="box-border relative m-auto w-1/3 p-10 bg-black bg-opacity-80 text-white">
+            <div className="box-border m-auto w-1/3 p-10 bg-black bg-opacity-80 text-white">
                 <h1 className="text-white text-4xl font-bold">
                     {isSignIn ? `Sign In` : `Sign Up`}
                 </h1>
@@ -232,7 +232,7 @@ const Login = () => {
                             {formik.errors.confirmPassword}
                         </p>
                     ) : null}
-                    <button className="m-4 p-2 bg-red-500">
+                    <button type="submit" className="m-4 p-2 bg-red-500">
                         {isSignIn ? `Sign In` : `Sign Up`}
                     </button>
                 </form>

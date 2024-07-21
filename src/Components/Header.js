@@ -5,7 +5,7 @@ const Header = (props) => {
     const location = useLocation();
     const user = useSelector((store) => store.user);
     const { pathname } = location;
-    const isRoot = pathname === "/";
+    const isRoot = pathname === "/login";
     const classes = ["w-full", "px-8", "bg-gradient-to-t from-grey", "z-10"];
     if (isRoot) {
         classes.push("absolute");
@@ -13,7 +13,7 @@ const Header = (props) => {
         classes.push("sticky");
     }
     return (
-        <div className={classes.join(" ")}>
+        <div className="box-border">
             <div className="flex justify-between">
                 <img
                     className="w-52 cursor-pointer"
