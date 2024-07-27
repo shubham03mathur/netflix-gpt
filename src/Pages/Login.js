@@ -169,12 +169,12 @@ const Login = () => {
     };
 
     return (
-        <div className="bg-cover-pic bg-cover bg-center h-screen">
-            <div className="box-border m-auto w-1/3 p-10 bg-black bg-opacity-80 text-white">
-                <h1 className="text-white text-4xl font-bold">
+        <div className="flex items-center justify-center bg-cover-pic h-screen bg-cover">
+            <div className="box-border m-auto w-1/3 p-10 bg-black bg-opacity-80 text-white z-10">
+                <h1 className="text-white text-2xl font-bold">
                     {isSignIn ? `Sign In` : `Sign Up`}
                 </h1>
-                <form className="flex flex-col" onSubmit={formik.handleSubmit}>
+                <form className="flex flex-col max-h-[75vh] overflow-y-auto z-10" onSubmit={formik.handleSubmit}>
                     {!isSignIn && (
                         <input
                             type="text"

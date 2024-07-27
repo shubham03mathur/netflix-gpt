@@ -1,4 +1,4 @@
-import { createBrowserRouter, defer } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Login from "../Pages/Login";
 import Browse from "../Pages/Browse";
 import Layout from "../Components/Layout";
