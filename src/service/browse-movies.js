@@ -5,7 +5,7 @@ class BrowseMovies {
         this.apiEndpoint = apiEndpoint;
     }
 
-    getAllNewMovieList(page = 1) {
+    getMovieListByGenre(page = 1) {
         return fetch(`${this.apiEndpoint}?page=${page}`, API_OPTIONS)
     }
 }

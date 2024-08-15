@@ -7,7 +7,13 @@ export const API_OPTIONS = {
     },
 };
 
+export const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w500/';
+
 export const BROWSE_MOVIE_ENDPOINT = 'https://api.themoviedb.org/3/movie/now_playing';
+
+export const POPULAR_MOVIES_ENDPOINT= 'https://api.themoviedb.org/3/movie/popular';
+export const TOP_RATED_MOVIES_ENDPOINT = 'https://api.themoviedb.org/3/movie/top_rated';
+export const UPCOMING_MOVIES_ENDPOINT = 'https://api.themoviedb.org/3/movie/upcoming';
 
 export const GET_VIDEOS_BY_MOVIE_ID = (id) => {
     return `https://api.themoviedb.org/3/movie/${id}/videos`;

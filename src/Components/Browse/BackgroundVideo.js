@@ -9,20 +9,18 @@ const BackgroundVideo = ({ movieId }) => {
 
     if (!titleVideoList) return null;
     const trailer = titleVideoList.find((v) => v.type === "Trailer");
-    
     const backGroundVideo = trailer.length > 0 ? trailer[0] : titleVideoList[0];
-    
 
     return (
         backGroundVideo && (
-            <div className="top-0 left-0 right-0 ">
+            <div className="backGroundVideo h-full w-full">
                 <iframe
                     className="w-full aspect-video"
-                    src={`https://www.youtube.com/embed/${backGroundVideo.key}?si=gUwt7UnWbW1XnAxJ&amp;controls=0`}
+                    src={`https://www.youtube.com/embed/${backGroundVideo.key}?si=gUwt7UnWbW1XnAxJ&amp;controls=0&autoplay=1&rel=0&loop=1&controls=0&mute=1&showinfo=0`}
                     title="YouTube video player"
-                    frameborder="0"
+                    frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
+                    referrerPolicy="strict-origin-when-cross-origin"
                 ></iframe>
             </div>
         )

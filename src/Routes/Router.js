@@ -8,7 +8,7 @@ import { BROWSE_MOVIE_ENDPOINT } from "../utility/constant";
 const fetchMovieList = async () => {
     const response = await new BrowseMovies(
         BROWSE_MOVIE_ENDPOINT
-    ).getAllNewMovieList();
+    ).getMovieListByGenre();
 
     return await response.json();
 };

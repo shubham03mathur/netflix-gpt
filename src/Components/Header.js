@@ -13,7 +13,7 @@ const Header = (props) => {
         classes.push("sticky");
     }
     return (
-        <div className="fixed top-0 left-0 w-full box-border px-4 bg-gradient-to-t from-black flex justify-between">
+        <div className="z-50 fixed top-0 left-0 w-full box-border px-4 bg-gradient-to-b from-black flex justify-between z-100">
             <img
                 className="w-52 cursor-pointer"
                 alt="logo"

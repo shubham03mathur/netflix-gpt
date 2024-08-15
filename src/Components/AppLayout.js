@@ -2,9 +2,9 @@ import Header from "./Header";
 
 const AppLayout = ({ children }) => {   
     return (
-        <div className="">
+        <div className="appLayout">
             <Header />
-            <div className="box-border">{children}</div>
+            <>{children}</>
         </div>
     );
 };
