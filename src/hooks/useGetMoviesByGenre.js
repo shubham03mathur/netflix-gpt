@@ -25,11 +25,11 @@ const useGetMoviesByGenere = (apiEndpoint, type) => {
             if (movieList && movieList?.results?.length) {
                 if (type === 'popularMovies') dispatch(addPopularMovies(movieList));
                 if (type === 'topRatedMovies') dispatch(addTopRatedMovies(movieList));
-                if (type === 'upcomingMovies') dispatch(addUpcomingMovies(movieList));
+                if (type === 'upComingMovies') dispatch(addUpcomingMovies(movieList));
             }
         }
         fetchData();
-    }, []);
+    }, [type]);
 };
 
 export default useGetMoviesByGenere;
