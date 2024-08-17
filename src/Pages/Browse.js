@@ -24,7 +24,7 @@ const Browse = () => {
             dispatch(addNowPlayingMovies(moviesList));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [moviesList]);
+    }, []);
 
     if (!moviesList) return <div>Loading...</div>;
 
