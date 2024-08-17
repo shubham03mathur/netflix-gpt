@@ -9,9 +9,11 @@ const Layout = (props) => {
     useEffect(() => {
         if (!user) {
             navigate("/login");
+        } else {
+            navigate("/browse");
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user]);
+    }, [user?.uid]);
 
     return (
         <AppLayout>

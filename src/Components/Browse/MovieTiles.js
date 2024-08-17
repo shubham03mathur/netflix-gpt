@@ -53,7 +53,7 @@ const MovieTiles = ({ apiEndpoint, type, title }) => {
         );
     });
     return (
-        <div className="relative w-full p-2">
+        <div className="relative w-full p-2 overflow-x-auto">
             <div className="clear-both">
                 <div
                     onMouseEnter={startScrollingLeft}
