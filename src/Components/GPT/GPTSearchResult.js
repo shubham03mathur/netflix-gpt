@@ -7,8 +7,9 @@ const GPTSearchResult = () => {
     const movieList = useSelector((store) => store?.gpt?.gptResults);
     const gptQuery = useSelector((store) => store?.gpt?.gptQuery);
     const isPending = useSelector((store) => store?.gpt?.isPending);
-    if (!movieList) return null;
     if (isPending) return <Shimmer chunk={12} />;
+    if (!movieList) return null;
+    
     // const movieListMemo = useMemo(() => movieList?.map((movies) => {
     //     console.log("momo invoked");
     //     return movies.map((mv) => {

@@ -24,11 +24,11 @@ const GPTSearchBar = () => {
     }
 
     const handleSubmit = async (e) => {
-        dispatch(updateIsPending(true));
         const gptQuery = `Act as a Movie Recommendation system and suggest some movies for the query : ${inputRef.current.value}
       . only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya`;
 
         if (inputRef.current.value) {
+            dispatch(updateIsPending(true));
             try {
                 const gptResults = await new openAPIService().getChatCompletion(
                     gptQuery
@@ -54,6 +54,7 @@ const GPTSearchBar = () => {
             >
                 <input
                     ref={inputRef}
+                    required
                     className="p-2 md:col-span-9"
                     name="search"
                     placeholder="What's on your mind today?"
