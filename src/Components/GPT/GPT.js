@@ -1,11 +1,10 @@
 import GPTSearchBar from "./GPTSearchBar";
 import GPTSearchResult from "./GPTSearchResult";
-import { GET_LANGUAGES } from "../../utility/constant";
 
 const GPT = () => {
     return (
-        <div className="flex flex-col items-center relative bg-cover-pic h-screen bg-cover">
-            <GPTSearchBar lang={GET_LANGUAGES}/>
+        <div className="flex flex-col items-center relative bg-cover-pic h-full bg-cover">
+            <GPTSearchBar />
             <GPTSearchResult />
         </div>
     );

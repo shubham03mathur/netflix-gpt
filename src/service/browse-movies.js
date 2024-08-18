@@ -6,7 +6,11 @@ class BrowseMovies {
     }
 
     getMovieListByGenre(page = 1) {
-        return fetch(`${this.apiEndpoint}?page=${page}`, API_OPTIONS)
+        return fetch(`${this.apiEndpoint}?page=${page}&include_adult=false`, API_OPTIONS)
+    }
+
+    searchMoviesWithQuery(page = 1) {
+        return fetch(`${this.apiEndpoint}&page=${page}&include_adult=false`, API_OPTIONS)
     }
 }
 

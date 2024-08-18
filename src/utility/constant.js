@@ -22,6 +22,10 @@ export const GET_VIDEOS_BY_MOVIE_ID = (id) => {
     return `https://api.themoviedb.org/3/movie/${id}/videos`;
 };
 
+export const GET_SEARCH_MOVIES_ENDPOINT = (q) => {
+    return `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(q)}`
+}
+
 export const GET_LANGUAGES = [
     { identifier: "en", name: "English" },
     { identifier: "hindi", name: "हिंदी" },
