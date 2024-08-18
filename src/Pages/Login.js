@@ -170,8 +170,8 @@ const Login = () => {
 
     return (
         <div className="flex items-center justify-center bg-cover-pic h-screen bg-cover">
-            <div className="box-border m-auto w-1/3 p-10 bg-black bg-opacity-80 text-white z-10">
-                <h1 className="text-white text-2xl font-bold">
+            <div className="box-border m-auto md:w-1/3 w-full p-10 bg-black bg-opacity-80 text-white z-10">
+                <h1 className="text-white md:text-2xl text-xl font-bold">
                     {isSignIn ? `Sign In` : `Sign Up`}
                 </h1>
                 <form className="flex flex-col max-h-[75vh] overflow-y-auto z-10" onSubmit={formik.handleSubmit}>

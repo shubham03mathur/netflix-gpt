@@ -4,7 +4,7 @@ import { GET_LANGUAGES } from "../../utility/constant";
 
 const GPT = () => {
     return (
-        <div className="flex flex-col justify-center items-center relative bg-cover-pic h-screen bg-cover">
+        <div className="flex flex-col items-center relative bg-cover-pic h-screen bg-cover">
             <GPTSearchBar lang={GET_LANGUAGES}/>
             <GPTSearchResult />
         </div>

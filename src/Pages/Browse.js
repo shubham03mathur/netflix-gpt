@@ -33,7 +33,7 @@ const Browse = () => {
     return (
         <div className="z-10 bg-black">
             <MainContainer />
-            <div className="mt-[-15%] bg-transparent">
+            <div className="mt-[15%] md:mt-[-15%] bg-transparent">
                 <MovieTiles
                     apiEndpoint={POPULAR_MOVIES_ENDPOINT}
                     type="popularMovies"
