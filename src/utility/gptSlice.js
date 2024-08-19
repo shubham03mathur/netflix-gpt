@@ -6,7 +6,7 @@ const gptSlice = createSlice({
         isPending: false,
         isGPTVisible: false,
         gptQuery: null,
-        gptResults: null
+        gptResults: null,
     },
     reducers: {
         toggleIsGPTVisible: (state) => {

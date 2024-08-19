@@ -10,14 +10,10 @@ import {
 import MainContainer from "../Components/Browse/MainContainer";
 import MovieTiles from "../Components/Browse/MovieTiles";
 import { addNowPlayingMovies } from "../utility/moviesSlice";
-import { useSelector } from "react-redux";
-
-import GPT from "../Components/GPT/GPT";
 
 const Browse = () => {
     const dispatch = useDispatch();
     const moviesList = useLoaderData();
-    const isGPTVisible = useSelector(store => store?.gpt?.isGPTVisible);
 
     useEffect(() => {
         if (moviesList) {
@@ -28,10 +24,10 @@ const Browse = () => {
 
     if (!moviesList) return <div>Loading...</div>;
 
-    if(isGPTVisible) return <GPT />;
+    // if(isGPTVisible) return <GPT />;
 
     return (
-        <div className="z-10 bg-black">
+        <div className="z-10 bg-black mt-[18%] md:mt-[4%]">
             <MainContainer />
             <div className="mt-[15%] md:mt-[-15%] bg-transparent">
                 <MovieTiles

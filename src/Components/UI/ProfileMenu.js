@@ -7,6 +7,8 @@ import { signOut } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { signoutAction } from '../../utility/actions';
+
+import { Link } from 'react-router-dom';
 export default function ProfileMenu({ name }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -56,7 +58,7 @@ export default function ProfileMenu({ name }) {
           horizontal: 'left',
         }}
       >
-        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <Link to="/account"><MenuItem onClick={handleClose}>My account</MenuItem></Link>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>

@@ -12,7 +12,6 @@ const MovieTiles = ({ apiEndpoint, type, title }) => {
 
     const startScrollingRight = () => {
         if (refCrousel.current) {
-            console.log("mouseenter right");
             scrolling = setInterval(() => {
                 refCrousel.current.scrollBy({
                     left: -scrollSpeed,
@@ -24,7 +23,6 @@ const MovieTiles = ({ apiEndpoint, type, title }) => {
 
     const startScrollingLeft = () => {
         if (refCrousel.current) {
-            console.log("mouseenter left");
             scrolling = setInterval(() => {
                 refCrousel.current.scrollBy({
                     left: scrollSpeed,

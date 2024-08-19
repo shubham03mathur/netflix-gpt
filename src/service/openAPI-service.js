@@ -6,7 +6,7 @@ class openAPIService {
     constructor() {
         if (!this.openApiClient) {
             this.openApiClient = new GoogleGenerativeAI(
-                localStorage.getItem("openApiKey")
+                JSON.parse(localStorage.getItem("_apiToken"))
             );
             this.model = this.openApiClient.getGenerativeModel({
                 model: "gemini-1.5-flash",
@@ -15,7 +15,6 @@ class openAPIService {
     }
 
     async getChatCompletion(content) {
-        console.log("Hit");
         const result = await this.model.generateContent(content);
         const response = await result.response;
         return response.text();

@@ -148,7 +148,6 @@ const Login = () => {
             } catch (error) {
                 setOpen(true);
                 let errorMessage = error.message;
-                console.log(errorMessage);
                 if (error.code === "auth/invalid-credential") {
                     errorMessage = "Invalid credentials.";
                 }

@@ -33,13 +33,17 @@ const Header = ({ lang }) => {
 
             {user && (
                 <div className="flex p-2 md:p-4 align-middle">
-                    <select className="h-max cursor-pointer rounded-lg p-2 md:p-2 mx-2 bg-gray-900 text-white ">{visibleLang}</select>
-                    <button
-                        onClick={toggleGPTSearch}
-                        className="h-max opacity-100 cursor-pointer rounded-lg p-1.5 mx-4 bg-gradient-to-tl from-purple-800 text-white"
-                    >
-                        {isGPTVisible ? "Browse" : "GPT Search"}
-                    </button>
+                    <select className="h-max cursor-pointer rounded-lg p-2 md:p-2 mx-2 bg-gray-900 text-white ">
+                        {visibleLang}
+                    </select>
+                    <Link to={isGPTVisible ? '/browse' : '/gpt'}>
+                        <button
+                            onClick={toggleGPTSearch}
+                            className="h-max opacity-100 cursor-pointer rounded-lg p-1.5 mx-4 bg-gradient-to-tl from-purple-800 text-white"
+                        >
+                            {isGPTVisible ? "Browse" : "GPT Search"}
+                        </button>
+                    </Link>
                     <div className="mr-1 cursor-pointer">
                         <img
                             className="w-8"
