@@ -22,7 +22,6 @@
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
     "redux-persist": "^6.0.0",
-    "shimmer-effects-react": "^1.0.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
