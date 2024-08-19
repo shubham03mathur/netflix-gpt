@@ -85,7 +85,7 @@ const GPTSearchBar = () => {
                     open={open}
                     handleClose={() => setOpen(false)}
                     message={{
-                        text: "Something went wrong! Couldn'\t connect to service.",
+                        text: "Something went wrong! Couldn't connect to service.",
                         severity: "error",
                     }}
                 />
